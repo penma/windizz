@@ -34,6 +34,9 @@ type
     eWindowHeight: TEdit;
     lWindowSizeX: TLabel;
     cDbgConsole: TCheckBox;
+    bDbgShow: TButton;
+    lDbgDebug: TLabel;
+    cDbgShowPlanes: TCheckBox;
     procedure cAutomodeChanged;
     procedure cAutomodeChanged2(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -47,6 +50,8 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure cFullscreenChanged2(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Button1Click(Sender: TObject);
+    procedure bDbgShowClick(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -208,6 +213,10 @@ begin
                         + ' -h ' + IntToStr(optHeight);
         end;
 
+        { append debug options }
+        if cDbgShowPlanes.Checked then
+                options := options + ' --debug-show-planes';
+
         { ok, we're done with argument parsing. first hide the main window }
         Hide;
 
@@ -272,6 +281,21 @@ begin
         if key = Ord(' ') then cFullscreen.Checked := not cFullscreen.Checked;
         cFullscreenChanged;
         if key = Ord(' ') then cFullscreen.Checked := not cFullscreen.Checked;
+end;
+
+procedure TfSetup.Button1Click(Sender: TObject);
+begin
+        fSetup.Height := fSetup.Height + 100;
+end;
+
+procedure TfSetup.bDbgShowClick(Sender: TObject);
+begin
+        bDbgShow.Enabled := False;
+        fSetup.Height := fSetup.Height + 80;
+
+        cDbgConsole.Visible := True;
+        cDbgShowPlanes.Visible := True;
+        lDbgDebug.Visible := True;
 end;
 
 end.

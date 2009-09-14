@@ -804,6 +804,9 @@ object fSetup: TfSetup
   OldCreateOrder = False
   Position = poDesktopCenter
   OnActivate = FormActivate
+  DesignSize = (
+    512
+    288)
   PixelsPerInch = 96
   TextHeight = 16
   object imgHeader: TImage
@@ -1345,6 +1348,7 @@ object fSetup: TfSetup
     Top = 240
     Width = 514
     Height = 50
+    Anchors = [akLeft, akRight, akBottom]
     Brush.Color = clBtnFace
     Pen.Color = cl3DLight
   end
@@ -1362,6 +1366,14 @@ object fSetup: TfSetup
     Height = 16
     Caption = 'x'
     Transparent = True
+  end
+  object lDbgDebug: TLabel
+    Left = 16
+    Top = 240
+    Width = 102
+    Height = 16
+    Caption = 'Debug-Optionen:'
+    Visible = False
   end
   object cAutomode: TCheckBox
     Left = 16
@@ -1409,10 +1421,11 @@ object fSetup: TfSetup
     OnChange = eZoomChange
   end
   object bStartDizzy: TButton
-    Left = 400
+    Left = 384
     Top = 248
-    Width = 97
+    Width = 113
     Height = 33
+    Anchors = [akRight, akBottom]
     Caption = 'Dizzy starten'
     TabOrder = 0
     OnClick = bStartDizzyClick
@@ -1444,11 +1457,41 @@ object fSetup: TfSetup
     Text = '600'
   end
   object cDbgConsole: TCheckBox
-    Left = 288
-    Top = 208
+    Left = 24
+    Top = 256
     Width = 201
     Height = 25
+    Hint = 
+      #214'ffnet ein Konsolenfenster, in dem Hinweise und Fehlermeldungen ' +
+      'von Dizzy aufgezeichnet werden.'
     Caption = 'Zeige Standardausgabe'
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 7
+    Visible = False
+  end
+  object bDbgShow: TButton
+    Left = 16
+    Top = 248
+    Width = 113
+    Height = 33
+    Anchors = [akLeft, akBottom]
+    Caption = 'Debug-Optionen'
+    TabOrder = 8
+    OnClick = bDbgShowClick
+  end
+  object cDbgShowPlanes: TCheckBox
+    Left = 24
+    Top = 280
+    Width = 297
+    Height = 25
+    Hint = 
+      'Verkleinert die Ansicht so, dass die Arbeitsweise von Dizzy beob' +
+      'achtet werden kann.'
+    Caption = 'Rotierende Ebenen aus Entfernung darstellen'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 9
+    Visible = False
   end
 end
