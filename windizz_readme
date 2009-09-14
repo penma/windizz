@@ -1,0 +1,19 @@
+HOW TO BUILD WINDIZZ
+
+* Clone the csfx repo into loader/csfx
+* Clone the dizzy repo into perl_code
+* Extract the Strawberry Portable archive into strawberry
+  (optionally removing some large files in it that are not needed for running
+  dizzy. For example, the C compilers, the POD, the perl headers, Unicode
+  character tables, MySQL libraries, ...)
+* Build Convert::Color and OpenGL and copy the contents of their blib
+  directories into support_libraries
+* put freeglut.dll from OpenGL to the same directory where OpenGL.dll is located
+* build loader/setup/Loader.dpr using Delphi.
+* Create a tarball of the contents of the top level directory (so that when
+  extracting it, four directories would show up in the working directory).
+  Move the tarball to loader/csfx/windizz.tar
+* Copy sfxdata.rc to loader/csfx
+* Build csfx using make.
+* run UPX on csfx.exe
+

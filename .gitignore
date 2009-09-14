@@ -1,0 +1,11 @@
+*.dcu
+*.~???
+*.exe
+*.res
+!Loader.res
+
+
+dti-200.jpg    fSettings.ddp   fSettings.~dfm  header.jpg  Loader.dpr   Loader.exe.manifest
+dti-50.jpg     fSettings.~ddp  fSettings.pas   Loader.cfg  Loader.~dpr  Loader.res
+fSettings.dcu  fSettings.dfm   fSettings.~pas  Loader.dof  Loader.exe   setup.ico
+

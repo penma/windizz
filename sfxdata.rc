@@ -1,0 +1,5 @@
+SFXDATA RCDATA "windizz.tar"
+STRINGTABLE BEGIN
+	23 "loader\\setup\\loader.exe"
+END
+
