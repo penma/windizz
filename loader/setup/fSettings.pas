@@ -230,7 +230,7 @@ begin
         if optAutomode then
                 options := options + ' -a -A ' + SaneFloatToStr(optAutomodeEvery);
         if optTexBlend then
-                options := options + ' -t -T ' + SaneFloatToStr(optTexBlendDuration);
+                options := options + ' -t Blend -T duration=' + SaneFloatToStr(optTexBlendDuration);
         if optFullscreen then begin
                 options := options + ' -f';
         end else begin
