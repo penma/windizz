@@ -1177,14 +1177,14 @@ object fSetup: TfSetup
   end
   object lZoom: TLabel
     Left = 16
-    Top = 152
+    Top = 160
     Width = 38
     Height = 16
     Caption = 'Zoom:'
   end
   object imgZoomL: TImage
     Left = 16
-    Top = 176
+    Top = 184
     Width = 24
     Height = 24
     AutoSize = True
@@ -1212,7 +1212,7 @@ object fSetup: TfSetup
   end
   object imgZoomR: TImage
     Left = 240
-    Top = 176
+    Top = 184
     Width = 24
     Height = 24
     AutoSize = True
@@ -1240,7 +1240,7 @@ object fSetup: TfSetup
   end
   object lZoom10: TLabel
     Left = 40
-    Top = 210
+    Top = 218
     Width = 18
     Height = 12
     Caption = '10%'
@@ -1254,7 +1254,7 @@ object fSetup: TfSetup
   end
   object lZoom1000: TLabel
     Left = 208
-    Top = 210
+    Top = 218
     Width = 28
     Height = 12
     Caption = '1000%'
@@ -1268,7 +1268,7 @@ object fSetup: TfSetup
   end
   object lZoom100: TLabel
     Left = 128
-    Top = 210
+    Top = 218
     Width = 23
     Height = 12
     Caption = '100%'
@@ -1282,14 +1282,14 @@ object fSetup: TfSetup
   end
   object lZoomFeedback: TLabel
     Left = 136
-    Top = 152
+    Top = 160
     Width = 33
     Height = 16
     Caption = '100%'
   end
   object lZoom50: TLabel
     Left = 104
-    Top = 210
+    Top = 218
     Width = 18
     Height = 12
     Caption = '50%'
@@ -1303,7 +1303,7 @@ object fSetup: TfSetup
   end
   object lZoom20: TLabel
     Left = 68
-    Top = 210
+    Top = 218
     Width = 18
     Height = 12
     Caption = '20%'
@@ -1317,7 +1317,7 @@ object fSetup: TfSetup
   end
   object lZoom200: TLabel
     Left = 160
-    Top = 210
+    Top = 218
     Width = 23
     Height = 12
     Caption = '200%'
@@ -1331,7 +1331,7 @@ object fSetup: TfSetup
   end
   object lZoom500: TLabel
     Left = 184
-    Top = 210
+    Top = 218
     Width = 23
     Height = 12
     Caption = '500%'
@@ -1354,14 +1354,14 @@ object fSetup: TfSetup
   end
   object lWindowsize: TLabel
     Left = 304
-    Top = 120
+    Top = 192
     Width = 81
     Height = 16
     Caption = 'Fenstergr'#246#223'e'
   end
   object lWindowSizeX: TLabel
     Left = 436
-    Top = 120
+    Top = 192
     Width = 6
     Height = 16
     Caption = 'x'
@@ -1374,6 +1374,14 @@ object fSetup: TfSetup
     Height = 16
     Caption = 'Debug-Optionen:'
     Visible = False
+  end
+  object lTexBlendDuration: TLabel
+    Left = 304
+    Top = 120
+    Width = 152
+    Height = 16
+    Caption = 'Dauer:                 Sekunden'
+    Transparent = True
   end
   object cAutomode: TCheckBox
     Left = 16
@@ -1403,7 +1411,7 @@ object fSetup: TfSetup
   end
   object eZoom: TTrackBar
     Left = 40
-    Top = 176
+    Top = 184
     Width = 193
     Height = 33
     Max = 300
@@ -1415,7 +1423,7 @@ object fSetup: TfSetup
     SelEnd = 0
     SelStart = 0
     ShowHint = False
-    TabOrder = 3
+    TabOrder = 5
     TickMarks = tmBottomRight
     TickStyle = tsManual
     OnChange = eZoomChange
@@ -1432,28 +1440,28 @@ object fSetup: TfSetup
   end
   object cFullscreen: TCheckBox
     Left = 288
-    Top = 88
+    Top = 160
     Width = 145
     Height = 25
     Caption = 'Vollbild'
-    TabOrder = 4
+    TabOrder = 6
     OnKeyUp = cFullscreenChanged2
     OnMouseUp = cFullscreenChanged1
   end
   object eWindowWidth: TEdit
     Left = 392
-    Top = 118
+    Top = 190
     Width = 41
     Height = 24
-    TabOrder = 5
+    TabOrder = 7
     Text = '800'
   end
   object eWindowHeight: TEdit
     Left = 448
-    Top = 118
+    Top = 190
     Width = 41
     Height = 24
-    TabOrder = 6
+    TabOrder = 8
     Text = '600'
   end
   object cDbgConsole: TCheckBox
@@ -1467,7 +1475,7 @@ object fSetup: TfSetup
     Caption = 'Zeige Standardausgabe'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 7
+    TabOrder = 10
     Visible = False
   end
   object bDbgShow: TButton
@@ -1477,7 +1485,7 @@ object fSetup: TfSetup
     Height = 33
     Anchors = [akLeft, akBottom]
     Caption = 'Debug-Optionen'
-    TabOrder = 8
+    TabOrder = 9
     OnClick = bDbgShowClick
   end
   object cDbgShowPlanes: TCheckBox
@@ -1491,7 +1499,34 @@ object fSetup: TfSetup
     Caption = 'Rotierende Ebenen aus Entfernung darstellen'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 9
+    TabOrder = 11
     Visible = False
+  end
+  object cTexBlend: TCheckBox
+    Left = 288
+    Top = 88
+    Width = 145
+    Height = 25
+    Hint = 
+      'Statt eines pl'#246'tzlichen Wechsels findet ein weicher '#220'bergang sta' +
+      'tt. Die hier eingestellte Zeit wird auf die Zeit unter "Automati' +
+      'sches Weiterschalten" addiert.'
+    Caption = #220'berblenden'
+    Checked = True
+    ParentShowHint = False
+    ShowHint = True
+    State = cbChecked
+    TabOrder = 3
+    OnKeyDown = cTexBlendChanged2
+    OnKeyUp = cTexBlendChanged2
+    OnMouseUp = cTexBlendChanged1
+  end
+  object eTexBlendDuration: TEdit
+    Left = 352
+    Top = 118
+    Width = 41
+    Height = 24
+    TabOrder = 4
+    Text = '2'
   end
 end

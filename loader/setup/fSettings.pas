@@ -37,6 +37,10 @@ type
     bDbgShow: TButton;
     lDbgDebug: TLabel;
     cDbgShowPlanes: TCheckBox;
+    cTexBlend: TCheckBox;
+    lTexBlendDuration: TLabel;
+    eTexBlendDuration: TEdit;
+    procedure cTexBlendChanged;
     procedure cAutomodeChanged;
     procedure cAutomodeChanged2(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -52,6 +56,10 @@ type
       Shift: TShiftState);
     procedure Button1Click(Sender: TObject);
     procedure bDbgShowClick(Sender: TObject);
+    procedure cTexBlendChanged2(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cTexBlendChanged1(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private-Deklarationen }
   public
@@ -135,6 +143,8 @@ var optScale: Integer;
 var optResolution: Integer;
 var optAutomode: Boolean;
 var optAutomodeEvery: Real;
+var optTexBlend: Boolean;
+var opttexBlendDuration: Real;
 var optFullscreen: Boolean;
 var optWidth, optHeight: Integer;
 
@@ -171,6 +181,20 @@ begin
                 Exit; { "return" in sane languages }
         end;
 
+        { TexBlend arguments }
+        optTexBlend := cTexBlend.Checked;
+        optTexBlendDuration := SaneStrToFloat(eTexBlendDuration.Text);
+        if IsNaN(optTexBlendDuration) and optTexBlend then begin
+                MessageDlg(
+                        'Ungültige Eingabe im Textfeld "Dauer" (Überblenden)',
+                        mtError,
+                        [mbOK],
+                        0);
+                Exit; { "return" in sane languages }
+        end;
+        { add blend duration to automode delay }
+        if optTexBlend then optAutomodeEvery := optAutomodeEvery + optTexBlendDuration;
+
         { Window size/Fullscreen }
         optFullscreen := cFullscreen.Checked;
         if not optFullscreen then begin
@@ -205,6 +229,8 @@ begin
         options := options + ' -s ' + IntToStr(optScale);
         if optAutomode then
                 options := options + ' -a -A ' + SaneFloatToStr(optAutomodeEvery);
+        if optTexBlend then
+                options := options + ' -t -T ' + SaneFloatToStr(optTexBlendDuration);
         if optFullscreen then begin
                 options := options + ' -f';
         end else begin
@@ -296,6 +322,28 @@ begin
         cDbgConsole.Visible := True;
         cDbgShowPlanes.Visible := True;
         lDbgDebug.Visible := True;
+end;
+
+procedure TfSetup.cTexBlendChanged2(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+        { so cTexBlendChanged sees correct state }
+        if key = Ord(' ') then cTexBlend.Checked := not cTexBlend.Checked;
+        cTexBlendChanged();
+        if key = Ord(' ') then cTexBlend.Checked := not cTexBlend.Checked;
+end;
+
+procedure TfSetup.cTexBlendChanged1(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+        cTexBlendChanged();
+end;
+
+procedure TfSetup.cTexBlendChanged();
+begin
+        { Called when the state of the box has possibly changed }
+        eTexBlendDuration.Enabled := cTexBlend.Checked;
+        lTexBlendDuration.Enabled := cTexBlend.Checked;
 end;
 
 end.
