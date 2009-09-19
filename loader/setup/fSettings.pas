@@ -228,7 +228,7 @@ begin
         options := options + ' -r ' + IntToStr(optResolution);
         options := options + ' -s ' + IntToStr(optScale);
         if optAutomode then
-                options := options + ' -a -A ' + SaneFloatToStr(optAutomodeEvery);
+                options := options + ' -a ' + SaneFloatToStr(optAutomodeEvery);
         if optTexBlend then
                 options := options + ' -t Blend -T duration=' + SaneFloatToStr(optTexBlendDuration);
         if optFullscreen then begin
