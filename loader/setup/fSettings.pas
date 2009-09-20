@@ -268,7 +268,7 @@ begin
                           '-I../support_libraries/lib '
                         + '-I../support_libraries/arch '
                         + '-I../support_libraries '
-                        + 'dizzybin '
+                        + '-Ilib dizzy '
                         + options),
                 nil, SW_SHOWNORMAL);
 
