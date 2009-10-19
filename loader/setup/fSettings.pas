@@ -139,7 +139,7 @@ begin
 end;
 
 procedure TfSetup.bStartDizzyClick(Sender: TObject);
-var optScale: Integer;
+var optZoom: Real;
 var optResolution: Integer;
 var optAutomode: Boolean;
 var optAutomodeEvery: Real;
@@ -158,16 +158,16 @@ begin
         { Calculate actual scale factor.
           Input is 2..4 to produce a zoom of 10^n
           scale factor is 50=100% 25=200% 100=50% (5000/z) }
-        optScale := Trunc(5000 / power(10, eZoom.position / 100));
+        optZoom := power(10, eZoom.position / 100);
 
         { Calculate a suitable texture resolution for scale..
-          75..     32
-          45..74   64
-            ..44   128
+             ..75    32
+           75..120   64
+          120..     128
         }
-             if optScale >= 75 then optResolution := 32
-        else if optScale >= 45 then optResolution := 64
-        else                        optResolution := 128;
+             if optZoom <  75.0 then optResolution := 32
+        else if optZoom < 120.0 then optResolution := 64
+        else                         optResolution := 128;
 
         { Automode arguments }
         optAutomode := cAutomode.Checked;
@@ -226,7 +226,7 @@ begin
         { assemble the arguments to a command line }
         options := '';
         options := options + ' -r ' + IntToStr(optResolution);
-        options := options + ' -s ' + IntToStr(optScale);
+        options := options + ' -z ' + SaneFloatToStr(optZoom);
         if optAutomode then
                 options := options + ' -a ' + SaneFloatToStr(optAutomodeEvery);
         if optTexBlend then
