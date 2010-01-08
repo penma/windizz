@@ -252,7 +252,7 @@ begin
         { which perl to use?
           wperl doesn't display a cansole window }
         if cDbgConsole.Checked then
-                perlbin := '..\wkperl.bat'
+                perlbin := '..\loader\wkperl.bat'
         else
                 perlbin := '..\strawberry\perl\bin\wperl.exe';
 
